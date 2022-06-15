@@ -1,4 +1,4 @@
-# ipssi_flutter_firebase
+# AdopteUnCoin
 
 A new Flutter project.
 
