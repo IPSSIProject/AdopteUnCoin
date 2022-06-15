@@ -1,18 +1,17 @@
-import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:ipssi_flutter_firebase/Models/UserModel.dart';
+import 'package:ipssi_flutter_firebase/Models/AppUser.dart';
 
-class UserController {
+class AppUserController {
   final auth = FirebaseAuth.instance;
   final fireUsers = FirebaseFirestore.instance.collection('Users');
   final storage = FirebaseStorage.instance;
 
-  Future<UserModel> createUser(String lastname, DateTime birthday, String password, String mail, String firstname) async {
+  Future<AppUser> createUser(String lastname, DateTime birthday, String password, String mail, String firstname) async {
     UserCredential result = await auth.createUserWithEmailAndPassword(email: mail, password: password);
-    User userFirebase = User(result.user!);
+    User userFirebase = result.user!;
     String uid = userFirebase.uid;
     Map<String, dynamic> map = {
       'email': mail,
@@ -25,15 +24,15 @@ class UserController {
     return getUser(uid);
   }
 
-  Future<User> connectUser(String mail, String password) async {
+  Future <AppUser> connectUser(String mail, String password) async {
     UserCredential result = await auth.signInWithEmailAndPassword(email: mail, password: password);
     String uid = result.user!.uid;
     return getUser(uid);
   }
   
-  Future<User> getUser(String uid) async {
+  Future <AppUser> getUser(String uid) async {
     DocumentSnapshot snapshot = await fireUsers.doc(uid).get();
-    return UserModel(snapshot);
+    return AppUser(snapshot);
   }
 
   String getId() {

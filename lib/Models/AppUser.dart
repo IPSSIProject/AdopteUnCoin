@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 // Firebase user class constructor
 
-class UserModel {
+class AppUser {
 
   //Attributes
   late String id;
@@ -15,7 +15,7 @@ class UserModel {
 
   // Constructors
 
-  User(DocumentSnapshot user) {
+  AppUser(DocumentSnapshot user) {
     Map<String, dynamic> userData = user.data() as Map<String, dynamic>;
     firstName = userData['firstName'];
     lastName = userData['lastName'];
