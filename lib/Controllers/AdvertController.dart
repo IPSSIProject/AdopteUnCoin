@@ -21,6 +21,18 @@ class AdvertController {
     return adverts;
   }
 
+  addAdvert(String uid, Map<String, dynamic> advert) {
+    fireAdverts.doc(uid).set(advert);
+  }
+
+  updateAdvert(String uid , Map<String, dynamic> map) {
+    fireAdverts.doc(uid).update(map);
+  }
+
+  deleteAdvert(String uid){
+    fireAdverts.doc(uid).delete();
+  }
+
   String getId() {
     return auth.currentUser!.uid;
   }

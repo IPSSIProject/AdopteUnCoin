@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ipssi_flutter_firebase/Models/Advert.dart';
-import 'package:ipssi_flutter_firebase/Controllers/AdvertController.dart';
+import '../Controllers/AdvertController.dart';
 
 class UserAdvert extends StatefulWidget {
   const UserAdvert({Key? key}) : super(key: key);
