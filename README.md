@@ -1,4 +1,4 @@
-# ipssi_flutter_firebase
+# Adopte  un coin
 
 A new Flutter project.
 
