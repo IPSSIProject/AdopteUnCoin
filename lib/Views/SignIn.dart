@@ -22,254 +22,169 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-
   String mail = "";
   String password = "";
-  String  prenom = "";
+  String prenom = "";
   String nom = "";
   DateTime birthday = DateTime.now();
   bool isregister = true;
-  List<bool> selection = [true,false];
-
-
-
+  List<bool> selection = [true, false];
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
-
           title: Text(widget.title),
         ),
         body: Padding(
-          child : bodyPage(),
-          padding : const EdgeInsets.all(10),
-
-        )
-    );
+          child: bodyPage(),
+          padding: const EdgeInsets.all(10),
+        ));
   }
 
-
-  Widget bodyPage(){
+  Widget bodyPage() {
     //Créer un design de connexion comportant des champs d'entrée et un bouton
     //3 éléments(adresse mail, mot de passe , bouton) + 1 élément de logo
     return SingleChildScrollView(
       child: Column(
-        children : [
+        children: [
           //Logo
 
           Container(
-            height : 80,
-            decoration : const BoxDecoration(
-                shape : BoxShape.circle,
-                image : DecorationImage(
-                    image : NetworkImage("https://medias.pourlascience.fr/api/v1/images/view/5d1b663a8fe56f77c8671165/wide_1300/image.jpg"),
-                    fit : BoxFit.fill
-
-                )
-            ),
+            height: 80,
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                    image: NetworkImage(
+                        "https://medias.pourlascience.fr/api/v1/images/view/5d1b663a8fe56f77c8671165/wide_1300/image.jpg"),
+                    fit: BoxFit.fill)),
           ),
-          const SizedBox(height : 10),
+          const SizedBox(height: 10),
           //Choix pour l'utilisateur
           ToggleButtons(
-            children: const [
-              Text("Inscription"),
-              Text("Connexion")
-            ],
+            children: const [Text("Inscription"), Text("Connexion")],
             isSelected: selection,
-            onPressed: (index){
-              if(index == 0){
+            onPressed: (index) {
+              if (index == 0) {
                 setState(() {
                   selection[0] = true;
                   selection[1] = false;
                   isregister = true;
                 });
-
-              }
-              else
-              {
+              } else {
                 setState(() {
                   selection[0] = false;
                   selection[1] = true;
                   isregister = false;
                 });
-
               }
-
             },
           ),
 
           //Afficher le nom suivant les différents cas
-          (isregister) ? TextField(
-              decoration : InputDecoration(
-                  hintText : "Entrer votre nom",
-                  border : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)
-                  )
-              ),
-              onChanged : (String value){
-                setState((){
-                  nom = value;
-                });
+          (isregister)
+              ? TextField(
+                  decoration: InputDecoration(
+                      hintText: "Entrer votre nom",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onChanged: (String value) {
+                    setState(() {
+                      nom = value;
+                    });
+                  })
+              : Container(),
 
-
-
-
-              }
-
-          ): Container(),
-
-
-
-
-
-          (isregister) ? TextField(
-              decoration : InputDecoration(
-                  hintText : "Entrer votre prénom",
-                  border : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)
-                  )
-              ),
-              onChanged : (String value){
-                setState((){
-                  prenom = value;
-                });
-
-
-
-
-              }
-
-          ): Container(),
-
-
-
-
-
-
-
+          (isregister)
+              ? TextField(
+                  decoration: InputDecoration(
+                      hintText: "Entrer votre prénom",
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                  onChanged: (String value) {
+                    setState(() {
+                      prenom = value;
+                    });
+                  })
+              : Container(),
 
           //Champs adresse mail
-          const SizedBox(height : 10),
+          const SizedBox(height: 10),
 
           TextField(
-              decoration : InputDecoration(
-                  hintText : "Entrer votre adresse mail",
-                  icon : const Icon(Icons.mail),
-                  border : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)
-                  )
-              ),
-              onChanged : (String value){
-                setState((){
+              decoration: InputDecoration(
+                  hintText: "Entrer votre adresse mail",
+                  icon: const Icon(Icons.mail),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
+              onChanged: (String value) {
+                setState(() {
                   mail = value;
                 });
-
-
-
-
-              }
-
-          ),
-
-
+              }),
 
           //champs mot de passe
 
-          const SizedBox(height : 10),
-
+          const SizedBox(height: 10),
 
           TextField(
-              obscureText : true,
-              decoration : InputDecoration(
-                hintText : "Entrer votre mot de passe",
-                icon : const Icon(Icons.lock),
-                border : OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-
+              obscureText: true,
+              decoration: InputDecoration(
+                hintText: "Entrer votre mot de passe",
+                icon: const Icon(Icons.lock),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
-              onChanged : (value){
-                setState((){
+              onChanged: (value) {
+                setState(() {
                   password = value;
                 });
-              }
-
-
-          ),
-
-
+              }),
 
           //Bouton
-          const SizedBox(height : 10),
+          const SizedBox(height: 10),
 
           ElevatedButton(
-              onPressed : (){
-                if(isregister == true){
+              onPressed: () {
+                if (isregister == true) {
                   //fonction pour s'inscrire
                   inscription();
-                }
-                else{
+                } else {
                   // Fonction pour se connecter
                   connexion();
                 }
-
-
               },
-              child : Text("Validation")
-
-          )
-
+              child: Text("Validation"))
         ],
       ),
     );
-
   }
-
 
   //Fonction
-  inscription(){
-    AppUserController().createUser(nom, birthday, password, mail, prenom).then((value){
-      setState(() {
+  inscription() {
+    AppUserController()
+        .createUser(nom, birthday, password, mail, prenom)
+        .then((value) {
+      setState(() {});
 
-      });
-
-      Navigator.push(context, MaterialPageRoute(
-          builder: (context){
-            return Search(); // todo mettre la bonne page
-          }
-      ));
-
-
-    }).catchError((error){
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return Search(); // todo mettre la bonne page
+      }));
+    }).catchError((error) {
       //Par exemple une perte de connexion
       print(error);
-
     });
-
   }
 
-
-
-  connexion(){
-    AppUserController().connectUser(mail, password).then((value){
+  connexion() {
+    AppUserController().connectUser(mail, password).then((value) {
       setState(() {
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context){
-              return const Search();
-            }
-        ));
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const Search();
+        }));
       });
-
-
-    }).catchError((error){
+    }).catchError((error) {
       //Afficher Pop connexion échoué
     });
-
   }
-
-
-
-
 }
