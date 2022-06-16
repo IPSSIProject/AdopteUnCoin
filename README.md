@@ -1,6 +1,12 @@
 # AdopteUnCoin
 
-A new Flutter project.
+A new Flutter project, a "leboncoin" style app. Done for the flutter course at IPSSI school.
+Created by:
+- Bastien PIEDALLU
+- Vu Quang Anh DOAN
+- Cyril MONGRENIER
+- Thomas JALLU
+- Damien SALEM
 
 ## Getting Started
 

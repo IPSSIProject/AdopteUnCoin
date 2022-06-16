@@ -1,11 +1,9 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // user class constructor
 
 class AppUser {
-
   //Attributes
   late String id;
   late String firstname;
@@ -34,6 +32,4 @@ class AppUser {
     }
     //favorite = userData['favorite'];
   }
-
-
 }
