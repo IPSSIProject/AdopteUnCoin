@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../Widgets/Navbar.dart';
 
 class Search extends StatelessWidget {
   const Search({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class Search extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 0, 127, 255),
         title: const Center(child:Text("Annonces")),
+        automaticallyImplyLeading: false,
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('Adverts').snapshots(),
@@ -25,22 +27,22 @@ class Search extends StatelessWidget {
               return GestureDetector(
                   onTap: () => print(document['price']) ,
                   child:Card(
-                    child:Column(
-                      children: [ ListTile(
-                  leading:const CircleAvatar(backgroundColor: Colors.red),
-                    title: Text(document['title']),
-                    subtitle:Text(document['description']),
-                        trailing: Text('${document["price"]} €')
-                    ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                        TextButton(
-                        child: const Text("BUY"),
-                onPressed: () {/* ... */},
-              ),]
-                        )
-                    ])));
+                      child:Column(
+                          children: [ ListTile(
+                              leading:const CircleAvatar(backgroundColor: Colors.red),
+                              title: Text(document['title']),
+                              subtitle:Text(document['description']),
+                              trailing: Text('${document["price"]} €')
+                          ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  TextButton(
+                                    child: const Text("BUY"),
+                                    onPressed: () {/* ... */},
+                                  ),]
+                            )
+                          ])));
             }).toList(),
           );
         },
