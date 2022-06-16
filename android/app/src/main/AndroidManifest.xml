@@ -1,14 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ipssi_flutter_firebase">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
    <application
         android:label="ipssi_flutter_firebase"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-       <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-       <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-       <uses-permission android:name="android.permission.CAMERA" />
-       <uses-feature android:name="android.hardware.camera" />
-       <uses-feature android:name="android.hardware.camera.autofocus" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
