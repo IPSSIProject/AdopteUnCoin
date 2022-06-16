@@ -1,4 +1,4 @@
-# Adopte  un coin
+# AdopteUnCoin
 
 A new Flutter project.
 
