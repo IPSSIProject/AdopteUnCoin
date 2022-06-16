@@ -2,31 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Adopte un Coin',
-        theme:
-        ThemeData(colorSchemeSeed: const Color.fromARGB(255, 0, 127, 255)),
-        home: const MyHomePage());
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class Search extends StatefulWidget {
+  const Search({Key? key}) : super(key: key);
   @override
   // ignore: library_private_types_in_public_api
-  _MyHomePageState createState() => _MyHomePageState();
+  _SearchState createState() => _SearchState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _SearchState extends State<Search> {
   List<String> data = ["data1", "data2", "data3", "data4"];
   @override
   Widget build(BuildContext context) {
