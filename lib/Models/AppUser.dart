@@ -1,7 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-// Firebase user class constructor
+// user class constructor
 
 class AppUser {
 
@@ -11,7 +11,7 @@ class AppUser {
   late String lastName;
   late String email;
   Map<String, dynamic>? favorite;
-  String? profilePicture;
+  String? avatar;
 
   // Constructors
 
@@ -20,11 +20,11 @@ class AppUser {
     firstName = userData['firstName'];
     lastName = userData['lastName'];
     email = userData['email'];
-    profilePicture = userData['profilePicture'];
+    avatar = userData['profilePicture'];
     favorite = userData['favorite'];
 
-    // Same as if
-    profilePicture ??= "https://firebasestorage.googleapis.com/v0/b/ipssi-flutter.appspot.com/o/user-empty.png?alt=media&token=6de1d312-ec83-46bb-8e8e-2996541f598a";
+    // Same as if (avatar == null)
+    avatar ??= "https://firebasestorage.googleapis.com/v0/b/ipssi-flutter.appspot.com/o/user-empty.png?alt=media&token=6de1d312-ec83-46bb-8e8e-2996541f598a";
   }
 
 
