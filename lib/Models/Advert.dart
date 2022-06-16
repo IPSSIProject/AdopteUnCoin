@@ -1,18 +1,16 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Advert {
 
   // Attributes
-  late DateTime date;
+  late Timestamp date;
   late String title;
-  late double price;
+  late int price;
   late String seller;
   String? picture;
   String? description;
 
   // Constructors
-
   Advert(DocumentSnapshot advertData) {
     date = advertData['date'];
     title = advertData['title'];
@@ -21,5 +19,4 @@ class Advert {
     picture = advertData['picture'];
     description = advertData['description'];
   }
-
 }
