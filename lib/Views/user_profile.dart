@@ -27,7 +27,8 @@ import 'package:flutter/material.dart';
   }
 }*/
 
-class userProfile extends StatelessWidget{
+class UserProfile extends StatelessWidget{
+  const UserProfile({Key? key}) : super(key: key);
   /*@override
   Widget build(BuildContext context){
     return Scaffold(
@@ -36,7 +37,7 @@ class userProfile extends StatelessWidget{
       ),
     );
   }*/
-
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Welcome to Flutter',
