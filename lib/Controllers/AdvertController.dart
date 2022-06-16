@@ -14,26 +14,14 @@ class AdvertController {
     return Advert(snapshot);
   }
 
-  Future <List<Advert>> getAllAdverts() async {
+  Future <List<Advert>> getCurrentUserAdverts() async {
     final QuerySnapshot snapshot = await fireAdverts.get();
-    final adverts = snapshot.docs.map((item) => Advert(item)).toList();
+    final adverts = snapshot.docs.map((item) => Advert(item)).where((item) => item.seller == auth.currentUser!.uid).toList();
 
     return adverts;
   }
 
   String getId() {
     return auth.currentUser!.uid;
-  }
-
-  addUser(String uid , Map<String, dynamic> map) {
-    fireAdverts.doc(uid).set(map);
-  }
-
-  updateUser(String uid , Map<String, dynamic> map) {
-    fireAdverts.doc(uid).update(map);
-  }
-
-  deleteUser(String uid){
-    fireAdverts.doc(uid).delete();
   }
 }
