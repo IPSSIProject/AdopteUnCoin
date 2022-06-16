@@ -15,7 +15,7 @@ class _UserAdvertState extends State<UserAdvert> {
   @override
   void initState() {
     super.initState();
-    data = AdvertController().getAllAdverts();
+    data = AdvertController().getCurrentUserAdverts();
   }
 
   @override
