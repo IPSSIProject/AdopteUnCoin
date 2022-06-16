@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -9,12 +8,12 @@ class AppUserController {
   final fireUsers = FirebaseFirestore.instance.collection('Users');
   final storage = FirebaseStorage.instance;
 
-  Future<AppUser> createUser(String lastname, DateTime birthday, String password, String mail, String firstname) async {
-    UserCredential result = await auth.createUserWithEmailAndPassword(email: mail, password: password);
+  Future<AppUser> createUser(String lastname, DateTime birthday, String password, String email, String firstname) async {
+    UserCredential result = await auth.createUserWithEmailAndPassword(email: email, password: password);
     User userFirebase = result.user!;
     String uid = userFirebase.uid;
     Map<String, dynamic> map = {
-      'email': mail,
+      'email': email,
       'avatar': null,
       'firstname': firstname,
       'lastname': lastname,
