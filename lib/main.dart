@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'Views/user_profile.dart';
 void main() {
-  runApp(const MyApp());
+  //runApp(const MyApp());
+  runApp(userProfile());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
+        // This is the th²eme of your application.
         //
         // Try running your application with "flutter run". You'll see the
         // application has a blue toolbar. Then, without quitting the app, try
