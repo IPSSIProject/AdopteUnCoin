@@ -26,6 +26,4 @@ class AppUser {
     // Same as if (avatar == null)
     avatar ??= "https://firebasestorage.googleapis.com/v0/b/ipssi-flutter.appspot.com/o/user-empty.png?alt=media&token=6de1d312-ec83-46bb-8e8e-2996541f598a";
   }
-
-
 }
