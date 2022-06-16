@@ -8,7 +8,7 @@ class AppUserController {
   final fireUsers = FirebaseFirestore.instance.collection('Users');
   final storage = FirebaseStorage.instance;
 
-  Future<AppUser> createUser(String lastname, DateTime birthday, String password, String email, String firstname) async {
+  Future<AppUser> createUser(String lastname, String password, String email, String firstname) async {
     UserCredential result = await auth.createUserWithEmailAndPassword(email: email, password: password);
     User userFirebase = result.user!;
     String uid = userFirebase.uid;
@@ -17,7 +17,7 @@ class AppUserController {
       'avatar': null,
       'firstname': firstname,
       'lastname': lastname,
-      'favorites': []
+      'favorite': [],
     };
     addUser(uid, map);
     return getUser(uid);

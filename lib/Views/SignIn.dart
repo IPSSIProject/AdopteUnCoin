@@ -24,9 +24,8 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   String mail = "";
   String password = "";
-  String prenom = "";
-  String nom = "";
-  DateTime birthday = DateTime.now();
+  String firstName = "";
+  String lastName = "";
   bool isregister = true;
   List<bool> selection = [true, false];
 
@@ -84,28 +83,28 @@ class _SignInState extends State<SignIn> {
           //Afficher le nom suivant les différents cas
           (isregister)
               ? TextField(
-                  decoration: InputDecoration(
-                      hintText: "Entrer votre nom",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  onChanged: (String value) {
-                    setState(() {
-                      nom = value;
-                    });
-                  })
+              decoration: InputDecoration(
+                  hintText: "Entrer votre nom",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
+              onChanged: (String value) {
+                setState(() {
+                  lastName = value;
+                });
+              })
               : Container(),
 
           (isregister)
               ? TextField(
-                  decoration: InputDecoration(
-                      hintText: "Entrer votre prénom",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20))),
-                  onChanged: (String value) {
-                    setState(() {
-                      prenom = value;
-                    });
-                  })
+              decoration: InputDecoration(
+                  hintText: "Entrer votre prénom",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
+              onChanged: (String value) {
+                setState(() {
+                  firstName = value;
+                });
+              })
               : Container(),
 
           //Champs adresse mail
@@ -133,7 +132,7 @@ class _SignInState extends State<SignIn> {
                 hintText: "Entrer votre mot de passe",
                 icon: const Icon(Icons.lock),
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
               onChanged: (value) {
                 setState(() {
@@ -161,30 +160,27 @@ class _SignInState extends State<SignIn> {
   }
 
   //Fonction
-  inscription() {
-    AppUserController()
-        .createUser(nom, birthday, password, mail, prenom)
-        .then((value) {
-      setState(() {});
-
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return Search(); // todo mettre la bonne page
-      }));
-    }).catchError((error) {
+  inscription(){
+    AppUserController().createUser(lastName, password, mail, firstName).then((value){
+      Navigator.push(context, MaterialPageRoute(
+          builder: (context){
+            return const Search();
+          }
+      ));
+    }).catchError((error){
       //Par exemple une perte de connexion
-      print(error);
+      debugPrint(error.toString());
+
     });
   }
 
   connexion() {
     AppUserController().connectUser(mail, password).then((value) {
-      setState(() {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const Search();
-        }));
-      });
-    }).catchError((error) {
-      //Afficher Pop connexion échoué
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const Search();
+      }));
+    }).catchError((onError) {
+      debugPrint(onError.toString());
     });
   }
 }

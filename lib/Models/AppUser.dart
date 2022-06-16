@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 // user class constructor
 
@@ -7,24 +8,31 @@ class AppUser {
 
   //Attributes
   late String id;
-  late String firstName;
-  late String lastName;
-  late String email;
-  Map<String, dynamic>? favorite;
+  late String firstname;
+  late String lastname;
+  late String mail;
   String? avatar;
+  Map<String, dynamic>? favorite;
 
   // Constructors
 
   AppUser(DocumentSnapshot user) {
+    String? tmp;
+    id = user.id;
     Map<String, dynamic> userData = user.data() as Map<String, dynamic>;
-    firstName = userData['firstName'];
-    lastName = userData['lastName'];
-    email = userData['email'];
-    avatar = userData['profilePicture'];
-    favorite = userData['favorite'];
+    firstname = userData['firstname'];
+    lastname = userData['lastname'];
+    mail = userData['email'];
+    tmp = userData['avatar'];
+    favorite = userData['avatar'];
 
-    // Same as if (avatar == null)
-    avatar ??= "https://firebasestorage.googleapis.com/v0/b/ipssi-flutter.appspot.com/o/user-empty.png?alt=media&token=6de1d312-ec83-46bb-8e8e-2996541f598a";
+    if (tmp == null) {
+      avatar = 'https://firebasestorage.googleapis.com/v0/b/ipssi-flutter.appspot.com/o/avatars%2Fuser-empty.png?alt=media&token=3010085c-a451-4423-9fb5-0bce0089f316';
+    }
+    else {
+      avatar = tmp;
+    }
+    //favorite = userData['favorite'];
   }
 
 
